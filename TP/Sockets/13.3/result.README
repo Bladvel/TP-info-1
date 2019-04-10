@@ -1,0 +1,4 @@
+	Modifique el archivo fuente client.c para que ejecutara 10000 intentos de conexion consecutivamente al server y no observe algun cambio notable al detallar el estado del proceso del server con el comando ps -elf | grep server. El tiempo de proceso y la cantidad de recursos no se modifica de una forma notoria si ejecuto al cliente una sola vez.
+    Luego de empezar a probar hacer llamados seguidos por parte del cliente (es decir, ejecutar seguido el archivo cliente con sus 10000 llamados por ejecucion), ocurre un error y el cliente deja de poder conectarse al servidor. 
+    Cuando ocurre esto, el % de uso del procesador que maneja el server aumenta hasta 6% (usualmente en las pruebas individuales dicho valor se mantiene en 0, o a lo sumo 1%).
+    Una solucion posible a esto seria manipular los tiempos de ejecucion de las instancias child para probar si asi los recursos de la pc se liberan mas rapido. 

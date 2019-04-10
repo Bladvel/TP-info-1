@@ -1,0 +1,2 @@
+    Al convertir el servidor de simple a concurrente con la llamada fork(), estamos haciendo que se cree una instancia child cada vez que un cliente intente realizar una conexion con el servidor.
+    Para este ejemplo no hemos considerado a que el padre reciba la se~nal de SIGCHLD cuando una estancia child termine, por lo que dichas instancias quedan en estado de Zombie (defunct) al finalizar. Hace falta agregar un signal handler al programa para que el padre haga el "Reaping Process".

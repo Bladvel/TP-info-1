@@ -1,0 +1,12 @@
+ 
+
+
+ 	Para este problema, al hacer que el padre espere a que reciba el estado de sus hijos, por medio de la llamada a wait(NULL), este se bloquea hasta que todos sus hijos hayan terminado
+ sus procesos.
+ Por lo que al recibir la se~nal de SIGCHLD, los procesos hijos se finalizan correctamente y no quedan como procesos Zombies consumiendo recursos de la maquina.
+	Cabe destacar un resultado curioso que no he logrado explicar: Cuando uso la funcion sleep sin usar un sign_handler, el parent obedece la funcion sin ningun problema, pero al incluir
+el llamado del signal, sleep deja de funcionar si lo dejo en el mismo lugar. A su vez, empieza a funcionar el sleep que se encuentra dentro del codigo que ejecutan los hijos. Para emular
+su funcionamiento anterior, por metodo experimental encontre que si llamo a sleep dentro del sign_handler y afuera (donde era llamado el sleep del padre originalmente), se ejecuta una suma
+de ambos tiempos de espera.
+		*Si ejecutaba el sleep solo dentro del sign_handler era ignorado en su totalidad la mayoria de las veces, y cuando no era asi, el programa se quedaba en tiempo de espera infinito*
+

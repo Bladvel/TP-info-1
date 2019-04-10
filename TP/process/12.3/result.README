@@ -1,0 +1,4 @@
+ 
+A diferencia del problema 12.2, aqui se modifica el singal handler para sustituir a wait por waitpid. El parametro -1 indica que esperamos a cualquier child que termine, NULL significa que ignoramos los datos de estado del hijo que estemos recibiendo y el tercer parametro "WNOHANG" indica que el procesos NO se bloquea durante la ejecucion de los hijos pero busca periodicamente el estado de los hijos y evitar asi que hayan procesos Zombies. Si ejecuto en otra consola los comandos:
+		ps -elf | grep main | grep defunct | wc -l
+Al principio obtendremos a casi todos los procesos hijos en estado Zombie, pero si seguimos probando, eventualmente ocurre el "reap" de esos procesos.

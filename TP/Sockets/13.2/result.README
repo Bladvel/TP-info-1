@@ -1,0 +1,8 @@
+	Modifique el archivo fuente server.c para que la instancia padre espere por la finalizacion de sus hijos sin bloquearse, al observar el estado del proceso, no queda 
+ningun proceso zombie. Cabe destacar que para realizar eso tuve que utilizar la funcion sigaction para realizar un sign_handler que me funcionara.
+
+1- Primero intente realizar un sign_handler usando la funcion signal como realice en ejercio 12.3 para utilizar waitpid con el parametro WNOHANG, pero no pude hacer que funcionara por alguna razon que escapo de mi entendimiento. 
+
+2- Intente agregar directamente la funcion 	while((waitpid(-1,NULL,WNOHANG))>0); pero tampoco funciono.
+
+3-Probe utilizando la system call sigaction y ahi si me funciono el handler. La implementacion de la funcion la saque de la guia beej de IPC.
